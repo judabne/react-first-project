@@ -22,11 +22,11 @@ class App extends Component {
         <ResponsiveDrawer>
           
             <Switch>
-              <Route path="/projects" component={PageShell(Projects, Slide, "left")} />
-              <Route path="/contact" component={PageShell(Contact, Slide, "left")} />
-              <Route path="/Posts" component={PageShell(Posts, Slide, "left")} />
-              <Route path="/AddPost" component={PageShell(AddPost, Slide, "left")} />
-              <Route path="/" exact component={PageShell(Home, Slide, "left")} />
+              <Route path="/projects" component={PageShell(Projects, Slide, 'left')} />
+              <Route path="/contact" component={PageShell(Contact, Slide, 'left')} />
+              <Route path="/Posts" component={PageShell(Posts, Slide, 'left')} />
+              <Route path="/AddPost" component={PageShell(AddPost, Slide, 'left')} />
+              <Route path="/" exact component={PageShell(Home, Slide, 'left')} />
             </Switch>
           
           

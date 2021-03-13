@@ -41,7 +41,7 @@ class AddPost extends Component {
                     label: 'Message'
                 },
                 value: '',
-                rows: 4
+                rows: 5
             },
         },
         loading: false
