@@ -6,4 +6,4 @@ So far I've created a messaging page, a method to add posts to the site, and tra
 To be added:
 - Validation
 - Infinite scrolling
-- 
+
