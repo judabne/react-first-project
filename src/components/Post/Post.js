@@ -11,7 +11,7 @@ const post = (props) => {
         <div >
             <Card style={{marginBottom: '10px'}}>
                 <div style={{background: '#f64c72'}}>
-                    <Chip label={props.title} style={{margin: '10px', fontWeight: "bold"}} />
+                    <h1 style={{marginTop: '0px', marginLeft: '10px', marginBottom: '0px', fontWeight: "bold", color: "white"}}>{props.title}</h1>
                 </div>
                 <div style={{background: '#f3f2ef', padding: '10px', textAlign: "justify"}}>
                     {props.body}
