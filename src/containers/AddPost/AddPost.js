@@ -4,7 +4,7 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Emoji from '../../components/Emoji/Emoji'
 import SendIcon from '@material-ui/icons/Send';
-import axios from '../../axios-messages';
+import axios from '../../axios-firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
 
 class AddPost extends Component {
@@ -16,7 +16,6 @@ class AddPost extends Component {
                     type: 'text',
                     placeholder: 'This is my name',
                     helperText: "Enter your name",
-                    label: 'Author'
                 },
                 value: '',
                 rows: 1
@@ -27,7 +26,6 @@ class AddPost extends Component {
                     type: 'text',
                     placeholder: 'The Cool Post',
                     helperText: "Choose something catchy!",
-                    label: 'Title'
                 },
                 value: '',
                 rows: 1
@@ -38,7 +36,6 @@ class AddPost extends Component {
                     type: 'text',
                     placeholder: 'I want to say...',
                     helperText: "Express yourself",
-                    label: 'Message'
                 },
                 value: '',
                 rows: 5
@@ -95,7 +92,6 @@ class AddPost extends Component {
                 {formElementsArray.map(formElement => (
                     <TextField
                         key={formElement.id}
-                        // label={formElement.elementConfig.label}
                         style={{ margin: 8 }}
                         placeholder={formElement.config.elementConfig.placeholder}
                         helperText={formElement.config.elementConfig.helperText}

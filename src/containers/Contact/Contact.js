@@ -4,34 +4,49 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import Emoji from '../../components/Emoji/Emoji'
 import SendIcon from '@material-ui/icons/Send';
-import axios from '../../axios-messages';
+import axios from '../../axios-firebase';
 import CircularProgress from '@material-ui/core/CircularProgress';
+import Select from '@material-ui/core/Select';
+import HidingLogic from '../../hoc/HidingLogic/HidingLogic';
+import { FormHelperText } from '@material-ui/core';
+import MenuItem from '@material-ui/core/MenuItem';
+
 
 class Contact extends Component {
     state = {
         messageForm: {
             email: {
-                elementType: 'input',
+                elementType: TextField,
                 elementConfig: {
                     type: 'email',
                     placeholder: 'abc@def.com',
                     helperText: "Enter your email",
-                    label: 'Email'
                 },
                 value: '',
                 rows: 1
             },
             message : {
-                elementType: 'input',
+                elementType: TextField,
                 elementConfig: {
                     type: 'text',
                     placeholder: 'I want to say...',
                     helperText: "Enter your message",
-                    label: 'Message'
                 },
                 value: '',
                 rows: 4
             },
+            urgent : {
+                elementType: Select,
+                elementConfig: {
+                    menuOptions: [
+                        {value: 'high', displayValue: 'High'},
+                        {value: 'med', displayValue: 'Medium'},
+                        {value: 'low', displayValue: 'Low'},
+                    ],
+                    helperText: "Shall we give it priority?",
+                },
+                value: 'low'
+            }
         },
         loading: false
     }
@@ -75,31 +90,44 @@ class Contact extends Component {
                 config: this.state.messageForm[key]
             });
         }
+        var ElementType
+        var dropDownOptions
         let form = (
             <form onSubmit={this.messageSubmitHandler}>
                 {formElementsArray.map(formElement => (
-                    <TextField
-                        key={formElement.id}
-                        // label={formElement.elementConfig.label}
-                        style={{ margin: 8 }}
-                        placeholder={formElement.config.elementConfig.placeholder}
-                        helperText={formElement.config.elementConfig.helperText}
-                        fullWidth
-                        margin="normal"
-                        InputLabelProps={{
-                            shrink: true,
-                        }}
-                        variant="outlined"
-                        multiline
-                        rows = {formElement.config.rows}
-                        onChange = {(event) => this.inputChangedHandler(event, formElement.id)}
-                    />
+                    <div style={{ margin: 8 }} key={formElement.id}>
+                        {console.log(formElement)}
+                        <HidingLogic>{ElementType = formElement.config.elementType}</HidingLogic>
+                        <ElementType style={{ marginTop: 4, marginBottom: 2 }}
+                            
+                            placeholder={formElement.config.elementConfig.placeholder}
+                            // helperText={formElement.config.elementConfig.helperText}
+                            fullWidth
+                            margin="normal"
+                            variant="outlined"
+                            multiline
+                            rows = {formElement.config.rows}
+                            onChange = {(event) => this.inputChangedHandler(event, formElement.id)}   
+                        >
+                        <HidingLogic>{formElement.config.elementConfig.menuOptions !== undefined
+                            ? dropDownOptions = formElement.config.elementConfig.menuOptions
+                            : dropDownOptions = [{value: 'dummy', displayValue: 'Dummy'}]
+                        }</HidingLogic>
+                        {console.log(dropDownOptions)}
+                        {dropDownOptions.map(menuItem => (
+                            <MenuItem value={menuItem.value}>{menuItem.displayValue}</MenuItem>
+                        ))}
+                        </ElementType>
+                        <FormHelperText>{formElement.config.elementConfig.helperText}</FormHelperText>
+                    </div>
+                    
                 ))}
-                <Button variant="contained" color="primary" type="submit" disableElevation style={{float: "right", margin: -8}}>
+                <Button variant="contained" color="primary" type="submit" disableElevation style={{float: "right", margintTop: 10, marginRight: 8}}>
                     Send Message {" "} <SendIcon style={{marginLeft: '10px'}}/>
                 </Button>
             </form>
         );
+        
         if (this.state.loading) {           
             form = 
                 <div style={{

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Typography from '@material-ui/core/Typography';
 import Post from '../../components/Post/Post';
-import axios from '../../axios-messages'
+import axios from '../../axios-firebase'
 
 class Posts extends Component {
     state = {
