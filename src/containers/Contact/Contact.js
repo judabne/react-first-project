@@ -45,7 +45,8 @@ class Contact extends Component {
                     ],
                     helperText: "Shall we give it priority?",
                 },
-                value: 'low'
+                value: 'low',
+                displayValue: 'Low'
             }
         },
         loading: false
@@ -99,7 +100,6 @@ class Contact extends Component {
                         {console.log(formElement)}
                         <HidingLogic>{ElementType = formElement.config.elementType}</HidingLogic>
                         <ElementType style={{ marginTop: 4, marginBottom: 2 }}
-                            
                             placeholder={formElement.config.elementConfig.placeholder}
                             // helperText={formElement.config.elementConfig.helperText}
                             fullWidth
@@ -146,7 +146,6 @@ class Contact extends Component {
                     Leave us a message! <Emoji symbol="💬"/>
                 </Typography>
                 {form}
-                {/* <Button btnType="Success" disabled={!this.state.formIsValid}>ORDER</Button> */}
             </div> 
         );
     }
